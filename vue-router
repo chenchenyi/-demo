@@ -1,0 +1,23 @@
+上一个页面：
+//传递参数
+ 1.self.$router.push({
+                     path:'/storeCont',
+                     query:{keyword:self.searchVal}
+                 })
+2.self.$router.push({
+                     name:'storeCont',
+                     params:{keyword:self.searchVal}
+                 })
+3.self.$router.push('/${self.searchVal}')
+参数配置：
+ {
+     path: '/describe/:keyword',
+     name: 'storeCont',
+     component: storeCont
+   }
+下一个页面：
+ this.keyword=this.$route.query.keyword;//接受参数
+ this.keyword=this.$route.params.keyword;//接受参数
+ 区别：
+ query传递的参数会显示在url中，params不会。
+ params强制刷新会被清除，而query则不会。
