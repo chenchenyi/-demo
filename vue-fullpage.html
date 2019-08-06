@@ -187,300 +187,238 @@ afterSlideLoad(anchorLink,index,slideAnchor,slideIndex): 滚动到某一幻灯�
 
 onSlideLeave(anchorLink,index,slideIndex,direction,nextSlideIndex): 在我们离开一个slide时，会触发一次此回调函数，与onLeave类似。
 原文链接：https://blog.csdn.net/u014477038/article/details/50992606
-<div>
-    <template>
-        <div id="join" >
-            <full-page ref="fullpage" :options="options" id="fullpage">
-             <div class="join-index-content ">
-              <!-- 轮播图 -->
-               <div class="join-index-carousel section" ref="pageModRef_1">
-                  <el-carousel :autoplay='isAutoplay' :height="carouselHeight" trigger="click" v-if="carouselImg.length>1">
-                        <el-carousel-item v-for="(item,index) in carouselImg" :key="index">
-                            <img :src="item.imgUrl" alt="背景图">
-                        </el-carousel-item>
-                    </el-carousel>
-                    <el-carousel trigger="click" :height="carouselHeight" v-else indicator-position="none">
-                        <el-carousel-item v-for="(item,index) in carouselImg" :key="index">
-                            <img :src="item.imgUrl" alt="背景图">
-                        </el-carousel-item>
-                    </el-carousel>
-    
-                    <div class="join-btn">
-                        <el-button type="primary" @click="toApplication">我要加盟<span class="join-icon"></span></el-button>
-                    </div>
-               </div>
-              
-              <div class="section">
-                    <!-- 加盟优势 -->
-                    <div ref="pageModRef_2"  >
-                        <el-row class="join-index-advantage w1200" >
-                            <el-row><p><span class="side-line font-size-28" >加盟优势</span></p></el-row>
-                            <el-row class="widthOuter">
-                                <el-col class="advan-img-list" :span="8"  v-for="(item,index) in advantageNotice" :key="index" :style="(((index+1)%3)===2)?{margin:'0px 40px'}:{margin:'0px'}">
-                                    <el-card :body-style="{ padding: '0px' }">
-                                        <img :src="item.imgUrl" class="image">
-                                        <div style="padding: 8px;" class="advan-img-title">
-                                            <span class="txt">{{item.title}}</span>
-                                        </div>
-                                        <div style="padding: 8px;" class="advan-img-title-hover">
-                                            <span class="txt">{{item.title}}<p class="des">{{item.des}}</p></span>
-                                        </div>
-                                    </el-card>
-                                </el-col>
-                            </el-row>
-                        </el-row>
-                    </div>
-              </div>
-                    <!-- 加盟攻略 -->
-                    <div class="section ">
-                    <div ref="pageModRef_3" >
-                        <el-row class="join-index-strategy w1200" > 
-                            <el-row><p><span class="side-line font-size-28">加盟攻略</span></p></el-row>
-                            <el-row>
-                                <el-col class="strategy-img-list" :span="8"  v-for="(item,index) in joinDetail.joinStrategy" :key="index" :style="(((index+1)%3)===2)?{margin:'0px 40px'}:{margin:'0px'}">
-                                    <router-link tag="div" :to="'/strategy?type='+item.key">
-                                        <el-card :body-style="{ padding: '40px 10px 20px' }" shadow="always">
-                                            <img class="strategy-icon" :src="item.imgUrl" alt="图标">
-                                            <p class="font-size-24" style="margin-bottom:10px">{{item.title}}</p>
-                                            <p class="join-des font-size-16">{{item.des}}</p>
-                                            <el-button class="detail-btn">查看详情</el-button>
-                                        </el-card> 
-                                    </router-link>
-                                </el-col>
-                            </el-row>
-                        </el-row>
-                    </div>
-               </div>
-               <!-- 华住品牌 -->
-               <div  class="section">
-                   <div :style="{height:carouselHeight}"  ref="pageModRef_4">
-                   <el-row class="hz-brands" >
-                       <el-row class="w1200 font-size-32" style="margin-top:80px;">华住旗下汉庭、漫心、花间堂等众多品牌供您选择加盟</el-row>
-                       <el-row class="hz-brands-lists w1200">
-                           <p class="font-size-28 title">华住品牌</p>
-                           <el-row>
-                                <div class="item-list" v-for="(brands,index) in hotelBrands" :key="index">
-                                    <p class="font-size-24 brandCate">{{brands.type}}</p>
-                                        <ul>
-                                            <li class="brands-list" v-for="(item,index) in brands.brands" :key="index">
-                                                <img class="brands-list-icon" :src="item.imgUrl" alt="酒店标识">
-                                            </li>
-                                        </ul>
-                                   </div>
-                           </el-row>
-                       </el-row>
-                   </el-row>
-                   </div>
-                 </div>
-                 <div  class="section" style="background:#F7F7F7" ref="pageModRef_5">
-                    <joinFooter></joinFooter>
-          </div  >
-          </div>
-    </full-page>
-           <div class="pageNav" ref="pageNav" id="menu">
-              <el-tooltip data-menuanchor='page1' class="item active" effect="dark" ref="pointeRef_1" content="我要加盟" placement="left">
-              <span class="point" @click="moveTo(1,0)"> <a href="#page1"></a></span>
-            </el-tooltip>
-            <el-tooltip data-menuanchor='page2' class="item" effect="dark" ref="pointeRef_2" content="加盟优势" placement="left">
-              <span class="point" @click="moveTo(2,0)"> <a href="#page2"></a></span>
-            </el-tooltip>
-            <el-tooltip  data-menuanchor='page3' class="item" effect="dark" ref="pointeRef_3" content="加盟攻略" placement="left">
-              <span class="point" @click="moveTo(2)"> <a href="#page3"></a></span>
-            </el-tooltip>
-            <el-tooltip data-menuanchor='page4' class="item" effect="dark" ref="pointeRef_4" content="华住品牌" placement="left">
-              <span class="point" @click="moveTo(3)"> <a href="#page4"></a></span>
-            </el-tooltip>
-            <el-tooltip data-menuanchor='page5' class="item" effect="dark" ref="pointeRef_5" content="联系方式" placement="left">
-              <span class="point" @click="moveTo(4)"> <a href="#page5"></a></span>
-            </el-tooltip>
-          </div> 
-          
-         
-          </div>
-           
-        
-    </template>
-    <script>
-    import '../assets/css/fullpage.min.css';
-    import joinFooter from "../components/common/footer";
-    export default{
-        name:"index",
-        components:{
-            joinFooter
-        },
-        data(){
-            return{
-                options: {
-                    
-                  licenseKey: 'OPEN-SOURCE-GPLV5-LICENSE',
-                    afterLoad: this.afterLoad,
-                    scrollOverflow: true,
-                    scrollBar: false,
-                    menu: '#menu',
-                    // navigation: true,
-                    anchors: ['page1', 'page2', 'page3',"page4",'page5'],
-                    sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#F7F7F7']	
-                },
-                isAutoplay:true,
-                carouselImg:[
-                    {imgUrl:require("../assets/image/banner/banner-top.jpg"),title:""}
-                ],
-                advantageNotice:[//加盟优势
-                    {
-                        title:"回报好",
-                        des:"多元品牌可供选择，强大会员体系直连，精英IT技术团队，高效品牌运营管理，为您创造更好财务回报。",
-                        imgUrl:require("../assets/image/banner/index-you-1.jpg")
-                    },
-                        {
-                        title:"加盟易",
-                        des:"加盟流程简便，客服经理全程指导，投资回报预测精细，为您提供更优加盟服务。",
-                        imgUrl:require("../assets/image/banner/index-you-3.jpg")
-                    },
-                        {
-                        title:"有面子",
-                        des:"世界第9大酒店集团，品牌位居行业前列，酒店品牌更有格调，酒店产品更有质感，为您加盟更具品味价值。",
-                        imgUrl:require("../assets/image/banner/index-you-2.jpg")
-                    },
-                ],
-                hotelBrands:[
-                    {
-                        type:"经济型",
-                        brands:[//经济型酒店
-                            {imgUrl:require("../assets/image/logo/index/icon-white-hanting.png"),title:"汉庭酒店"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-haiyou.png"),title:"海友酒店"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-yilai.png"),title:"怡莱"},
-                        ]
-                    },
-                    {
-                        type:"舒适型",
-                        brands:[//舒适型酒店
-                            {imgUrl:require("../assets/image/logo/index/icon-white-quanji.png"),title:"全季酒店"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-youjia.png"),title:"汉庭优佳"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-juzijixuan.png"),title:"桔子精选"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-yibisi.png"),title:"宜必思"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-ybsshangpin.png"),title:"宜必思尚品"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-xincheng.png"),title:"星程"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-citigo.png"),title:"CitiGO"},
-                        ]
-                    },
-                    {
-                        type:"高档型",
-                        brands:[//高档型酒店
-                            {imgUrl:require("../assets/image/logo/index/icon-white-meijue.png"),title:"美爵"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-manxin.png"),title:"漫心酒店"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-juzishuijing.png"),title:"桔子水晶"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-nuofute.png"),title:"诺富特"},
-                        ],
-                    },
-                    {
-                        type:"豪华型",
-                        brands:[//豪华型酒店
-                            {imgUrl:require("../assets/image/logo/index/icon-white-xiyue.png"),title:"禧月"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-huajiantang.png"),title:"花间堂"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-meiju.png"),title:"美居"},
-                        ],
-                    },
-                    {
-                        type:"周边",
-                        brands:[//豪华型酒店
-                            {imgUrl:require("../assets/image/logo/index/icon-white-keting.png"),title:"客听"},
-                            {imgUrl:require("../assets/image/logo/index/icon-white-mankafei.png"),title:"漫咖啡"},
-                        ]
-                    }
-                ],
-                joinDetail:{
-                    joinStrategy:[//加盟攻略
-                        {imgUrl:require("../assets/image/icon/icon-jmlc.png"),title:"加盟流程", key:"jmlc", des:"意向人申请-项目初审-项目决策-合同签署"},
-                        {imgUrl:require("../assets/image/icon/icon-jrzc.png"),title:"金融支持", key:"jrzc", des:"华住10亿金融授信，破局酒店资金困境，预估可贷款金额，让您开店无忧"},
-                        {imgUrl:require("../assets/image/icon/icon-wypg.png"),title:"物业评估", key:"wypg", des:"在线物业评估，选择最合适的华住酒店品牌"},
-                    ]
-                },
-                scrollY: -1,
-                scrollTop: 0,
-                listGroupRef: [], //模块ref列表
-                listHeight: [], //模块高度
-                currentIndex: 0 //
-            }	
-        },
-        computed: {
-            carouselHeight () {
-                return (window.innerHeight - 80).toString() + 'px'
-            }
-        },
-        mounted () {
-            this.$nextTick(()=>{
-                this.calculateHeight()
-                window.addEventListener('scroll',this.scroll_)
-            })
-        },
-        destroyed () {
-            window.removeEventListener("scroll", this.scroll_)
-        },
-        methods :{
-            scroll_ () {
-                this.scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop || document.querySelector(this.el).scrollTop
-              if (this.scrollTop) {
-                  const listHeight = this.listHeight
-                  for (let i = 0; i < listHeight.length-1; i++) {
-                    let height1 = listHeight[i]
-                    let height2 = listHeight[i + 1]
-                    if (this.scrollTop >= height1 && this.scrollTop < height2) {
-                      this.currentIndex = i
-                      this.$refs['pointeRef_'+(i+1)].$el.classList.add('active');
-                      this.$refs['pointeRef_'+(i+1)].$el.classList.remove('grey');
-                      
-                    } else {
-                        this.$refs['pointeRef_'+(i+1)].$el.classList.remove('active');
-                        this.$refs['pointeRef_'+(i+1)].$el.classList.add('grey');
-                        if (this.scrollTop > listHeight[5]) {
-                          this.$refs['pointeRef_5'].$el.classList.add('active');
-                          this.$refs['pointeRef_5'].$el.classList.remove('grey');
-                        }	
-                    }
-    
-                  }
-    
-              }
-            },
-            sliderPage (num) {
-                for (let i in this.listGroupRef) {
-              if (i.indexOf('pageModRef') > -1) {
-                  if (parseInt(i.substr(-1,1)) ==num ){
-                      this.$refs['pointeRef_'+num].$el.classList.add('active')
-                      this.$refs['pointeRef_'+num].$el.classList.remove('grey')
-                      this.scrollTop = this.listHeight[parseInt(i.substr(-1,1))-1]
-                      window.scrollTo(0,this.listHeight[parseInt(i.substr(-1,1))-1])
-                      //console.log(this.listHeight[])
-                  } else {
-                      this.$refs['pointeRef_'+parseInt(i.substr(-1,1))].$el.classList.remove('active')
-                      this.$refs['pointeRef_'+parseInt(i.substr(-1,1))].$el.classList.add('grey')
-                  }
-              }
-          }
-            },
-            calculateHeight() {
-          this.listGroupRef = this.$refs
-          if (!this.listGroupRef) {
-            return
-          }
-          let height = 0
-          this.listHeight.push(height)
-          for (let i in this.listGroupRef) {
-              if (i.indexOf('pageModRef') > -1) {
-                  let item = this.listGroupRef[i]
-                height += item.clientHeight
-                this.listHeight.push(height)
-              }
-          }
-        },
-        toApplication () {
-                window.location.href = 'http://www.htinnsjm.com/User/Application'
-            }
-        }
-        
-    }
-    </script>
-    
+https://www.aliyue.net/166.html
+<template>
+	<div id="join" >
+		<full-page ref="fullpage" :options="options" id="fullpage">
+		 <div class="join-index-content ">
+		  <!-- 轮播图 -->
+		   <div class="join-index-carousel section" >
+			  <el-carousel :autoplay='isAutoplay' :height="carouselHeight" trigger="click" v-if="carouselImg.length>1">
+					<el-carousel-item v-for="(item,index) in carouselImg" :key="index">
+						<img :src="item.imgUrl" alt="背景图">
+					</el-carousel-item>
+				</el-carousel>
+				<el-carousel trigger="click" :height="carouselHeight" v-else indicator-position="none">
+					<el-carousel-item v-for="(item,index) in carouselImg" :key="index">
+						<img :src="item.imgUrl" alt="背景图">
+					</el-carousel-item>
+				</el-carousel>
+
+				<div class="join-btn">
+					<el-button type="primary" @click="toApplication">我要加盟<span class="join-icon"></span></el-button>
+				</div>
+		   </div>
+		  
+		  <div class="section">
+			    <!-- 加盟优势 -->
+			    <div  >
+					<el-row class="join-index-advantage w1200" >
+						<el-row><p><span class="side-line font-size-28" >加盟优势</span></p></el-row>
+						<el-row class="widthOuter">
+							<el-col class="advan-img-list" :span="8"  v-for="(item,index) in advantageNotice" :key="index" :style="(((index+1)%3)===2)?{margin:'0px 40px'}:{margin:'0px'}">
+								<el-card :body-style="{ padding: '0px' }">
+									<img :src="item.imgUrl" class="image">
+									<div style="padding: 8px;" class="advan-img-title">
+										<span class="txt">{{item.title}}</span>
+									</div>
+									<div style="padding: 8px;" class="advan-img-title-hover">
+										<span class="txt">{{item.title}}<p class="des">{{item.des}}</p></span>
+									</div>
+								</el-card>
+							</el-col>
+						</el-row>
+					</el-row>
+				</div>
+		  </div>
+				<!-- 加盟攻略 -->
+				<div class="section ">
+				<div  >
+					<el-row class="join-index-strategy w1200" > 
+						<el-row><p><span class="side-line font-size-28">加盟攻略</span></p></el-row>
+						<el-row>
+							<el-col class="strategy-img-list" :span="8"  v-for="(item,index) in joinDetail.joinStrategy" :key="index" :style="(((index+1)%3)===2)?{margin:'0px 40px'}:{margin:'0px'}">
+								<router-link tag="div" :to="'/strategy?type='+item.key">
+									<el-card :body-style="{ padding: '40px 10px 20px' }" shadow="always">
+										<img class="strategy-icon" :src="item.imgUrl" alt="图标">
+										<p class="font-size-24" style="margin-bottom:10px">{{item.title}}</p>
+										<p class="join-des font-size-16">{{item.des}}</p>
+										<el-button class="detail-btn">查看详情</el-button>
+									</el-card> 
+								</router-link>
+							</el-col>
+						</el-row>
+					</el-row>
+				</div>
+		   </div>
+		   <!-- 华住品牌 -->
+		   <div  class="section">
+			   <div :style="{height:carouselHeight}">
+			   <el-row class="hz-brands" >
+				   <el-row class="w1200 font-size-32" style="margin-top:40px;">华住旗下汉庭、漫心、花间堂等众多品牌供您选择加盟</el-row>
+				   <el-row class="hz-brands-lists w1200">
+					   <p class="font-size-28 title">华住品牌</p>
+					   <el-row>
+						    <div class="item-list" v-for="(brands,index) in hotelBrands" :key="index">
+							    <p class="font-size-24 brandCate">{{brands.type}}</p>
+									<ul>
+										<li class="brands-list" v-for="(item,index) in brands.brands" :key="index">
+											<img class="brands-list-icon" :src="item.imgUrl" alt="酒店标识">
+										</li>
+									</ul>
+						   	</div>
+					   </el-row>
+				   </el-row>
+			   </el-row>
+			   </div>
+			 </div>
+			 <div  class="section" style="background:#F7F7F7" >
+				<joinFooter></joinFooter>
+	  </div  >
+	  </div>
+</full-page>
+	   <div class="pageNav" ref="pageNav" id="menu">
+	  	<el-tooltip  data-menuanchor='pageJoin' class="item active" effect="dark"  content="我要加盟" placement="left">
+	      <span class="point" @click="moveTo(1)"> <a href="#pageJoin" ></a></span>
+	    </el-tooltip>
+	    <el-tooltip data-menuanchor='pageAdvantage' class="item" effect="dark"  content="加盟优势" placement="left">
+	      <span class="point" @click="moveTo(2)"> <a href="#pageAdvantage"></a></span>
+	    </el-tooltip>
+	    <el-tooltip  data-menuanchor='pageStrategy' class="item" effect="dark"  content="加盟攻略" placement="left">
+	      <span class="point" @click="moveTo(3)"> <a href="#pageStrategy"></a></span>
+	    </el-tooltip>
+	    <el-tooltip data-menuanchor='pageBrands' class="item" effect="dark"  content="华住品牌" placement="left">
+	      <span class="point" @click="moveTo(4)"> <a href="#pageBrands"></a></span>
+	    </el-tooltip>
+	    <el-tooltip data-menuanchor='pageContact' class="item" effect="dark"  content="联系方式" placement="left">
+	      <span class="point" @click="moveTo(5)"> <a href="#pageContact"></a></span>
+	    </el-tooltip>
+	  </div> 
+	  
+     
+	  </div>
+	   
+	
+</template>
+<script>
+import '../assets/css/fullpage.min.css';
+import joinFooter from "../components/common/footer";
+export default{
+	name:"index",
+	components:{
+		joinFooter
+	},
+	data(){
+		return{
+			options: {
+                afterLoad: this.afterLoad,
+                scrollOverflow: true,
+                scrollBar: false,
+                menu: '#menu',
+                 navigation: false,//导航栏
+                anchors: ['pageJoin', 'pageAdvantage', 'pageStrategy',"pageBrands",'pageContact']
+                //sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#F7F7F7']	
+			},
+			isAutoplay:true,
+			carouselImg:[
+				{imgUrl:require("../assets/image/banner/banner-top.jpg"),title:""}
+			],
+			advantageNotice:[//加盟优势
+				{
+					title:"回报好",
+					des:"多元品牌可供选择，强大会员体系直连，精英IT技术团队，高效品牌运营管理，为您创造更好财务回报。",
+					imgUrl:require("../assets/image/banner/index-you-1.jpg")
+				},
+					{
+					title:"加盟易",
+					des:"加盟流程简便，客服经理全程指导，投资回报预测精细，为您提供更优加盟服务。",
+					imgUrl:require("../assets/image/banner/index-you-3.jpg")
+				},
+					{
+					title:"有面子",
+					des:"世界第9大酒店集团，品牌位居行业前列，酒店品牌更有格调，酒店产品更有质感，为您加盟更具品味价值。",
+					imgUrl:require("../assets/image/banner/index-you-2.jpg")
+				},
+			],
+			hotelBrands:[
+				{
+					type:"经济型",
+					brands:[//经济型酒店
+						{imgUrl:require("../assets/image/logo/index/icon-white-hanting.png"),title:"汉庭酒店"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-haiyou.png"),title:"海友酒店"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-yilai.png"),title:"怡莱"},
+					]
+				},
+				{
+					type:"舒适型",
+					brands:[//舒适型酒店
+						{imgUrl:require("../assets/image/logo/index/icon-white-quanji.png"),title:"全季酒店"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-youjia.png"),title:"汉庭优佳"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-juzijixuan.png"),title:"桔子精选"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-yibisi.png"),title:"宜必思"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-ybsshangpin.png"),title:"宜必思尚品"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-xincheng.png"),title:"星程"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-citigo.png"),title:"CitiGO"},
+					]
+				},
+				{
+					type:"高档型",
+					brands:[//高档型酒店
+						{imgUrl:require("../assets/image/logo/index/icon-white-meijue.png"),title:"美爵"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-manxin.png"),title:"漫心酒店"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-juzishuijing.png"),title:"桔子水晶"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-nuofute.png"),title:"诺富特"},
+					],
+				},
+				{
+					type:"豪华型",
+					brands:[//豪华型酒店
+						{imgUrl:require("../assets/image/logo/index/icon-white-xiyue.png"),title:"禧月"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-huajiantang.png"),title:"花间堂"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-meiju.png"),title:"美居"},
+					],
+				},
+				{
+					type:"周边",
+					brands:[//豪华型酒店
+						{imgUrl:require("../assets/image/logo/index/icon-white-keting.png"),title:"客听"},
+						{imgUrl:require("../assets/image/logo/index/icon-white-mankafei.png"),title:"漫咖啡"},
+					]
+				}
+			],
+			joinDetail:{
+				joinStrategy:[//加盟攻略
+					{imgUrl:require("../assets/image/icon/icon-jmlc.png"),title:"加盟流程", key:"jmlc", des:"意向人申请-项目初审-项目决策-合同签署"},
+					{imgUrl:require("../assets/image/icon/icon-jrzc.png"),title:"金融支持", key:"jrzc", des:"华住10亿金融授信，破局酒店资金困境，预估可贷款金额，让您开店无忧"},
+					{imgUrl:require("../assets/image/icon/icon-wypg.png"),title:"物业评估", key:"wypg", des:"在线物业评估，选择最合适的华住酒店品牌"},
+				]
+			},
+			scrollY: -1,
+			scrollTop: 0,
+			listGroupRef: [], //模块ref列表
+			listHeight: [], //模块高度
+			currentIndex: 0 //
+		}	
+	},
+	computed: {
+		carouselHeight () {
+			return (window.innerHeight - 80).toString() + 'px'
+		}
+	},
+	mounted () {
+          window.location.href = 'http://10.105.38.234:8080/#pageJoin';
+	},
+	methods :{
+		moveTo(val) {
+         this.$refs.fullpage.api.moveTo(val);
+		},
+    toApplication () {
+			window.location.href = 'http://www.htinnsjm.com/User/Application'
+		}
+	}
+}
+</script>
+
 </div>
 </body>
 </html>
