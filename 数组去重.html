@@ -8,18 +8,20 @@
 </head>
 <body>
     <script>
-    function derepeat(arr){
-         let temp=[];
-         for(let i=0;i<arr.length;i++)
-         {
-             if(temp.indexOf(arr[i])==-1)
-             temp.push(arr[i]);
-         }
-         return temp;
-    }
-    let array=[5,6,2,'2',2,3,3,8];
+//     function derepeat(arr){
+//          let temp=[];
+//          for(let i=0;i<arr.length;i++)
+//          {
+//              if(temp.indexOf(arr[i])==-1)
+//              temp.push(arr[i]);
+//          }
+//          return temp;
+//     }
+//     let array=[5,6,2,'2',2,3,3,8];
 
-console.log(derepeat(array));
+// console.log(derepeat(array));
+// es6直接用set:
+console.log(new Set([5,6,2,'2',2,3,3,8]));
     
     </script>
 </body>
