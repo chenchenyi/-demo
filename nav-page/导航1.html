@@ -1,0 +1,103 @@
+<!--头部 导航	开始-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>导航1</title>
+    <link rel="stylesheet" href="./yunPurchase-v2.css" type="text/css" />
+    <link rel="stylesheet" href="./yunPurchase.css" type="text/css" />
+    <link rel="stylesheet" href="./common.css" type="text/css" />
+</head>
+
+<body>
+    <div class="yunHeader bg-white index" style="border-bottom:0 ;">
+        <!--头部 导航	开始-->
+        <div class="state_nav" >
+            <div class="wrap1190 clearfix">
+                <span class="welcome">欢迎来到华住易购，
+                    <label class="user_login">
+                        <a href="/user/personCenter" class="user_name ellipsis"> 测试用户<i></i></a>
+                        <div class="person_pop">
+                            <dl class="pinfo clearfix">
+                                <dt><img src="/statics/wapv1/img/p_center.png" /></dt>
+                                <dd>
+                                    <span class="name ellipsis">
+                                        测试用户
+                                    </span>
+                                    <label class="tel ellipsis"> 13666668888</label>
+                                </dd>
+                            </dl>
+                            <p class="p_ctrl clearfix">
+                                <a href="/user/personCenter" class="btn">个人中心</a>
+                                <a href="javascript:void(0);" class="btn loginout">退出</a>
+                            </p>
+                        </div>
+                    </label>
+                </span>
+                <!--公告 start-->
+                <div class="note_box hd">
+                    <ul class="note_list">
+                        <li class="ellipsis"><a target="_blank" href="/announce/detail/180">重要-关于北京及周边地区物流暂停的通知</a></li>
+                        <li class="ellipsis"><a target="_blank" href="/announce/detail/179">2019年第一期加盟店优质工程奖名单</a></li>
+                        <li class="ellipsis"><a target="_blank" href="/announce/detail/176">2019年加盟店优质工程奖奖励规则</a></li>
+                        <li class="ellipsis"><a target="_blank" href="/announce/detail/168">夏季空调使用注意事项</a></li>
+                        <li class="ellipsis"><a target="_blank" href="/announce/detail/167">关于登录异常等浏览兼容问题的解决办法</a></li>
+                        <li class="ellipsis"><a target="_blank" href="/announce/detail/162">汉庭海友洗沐用品供应商变更通知</a></li>
+                    </ul>
+                    <a target="_blank" href="/htm/announce?page=1&size=10" class="note-link-more">
+                        <em class="num">4</em>
+                    </a>
+                </div>
+                <!--公告 end-->
+                <ul class="nav_right clearfix">
+                    <li class="myorder"><a href="/order/list">我的订单</a></li>
+                    <li class="porder"><a href="/cart/list">购物车</a></li>
+                    <li class="personcenter dropdown">
+                        <a style="padding-right: 15px;" href="javascript:void(0);">意见箱<em></em></a>
+                        <ul class="person-list">
+                            <li style="padding-left: 20px;"><a href="/feedback/addPage"
+                                    style="font-size: 12px;">意见箱录入</a></li>
+
+                            <li style="padding-left: 20px;"><a href="/htm/feedBack" style="font-size: 12px;">意见箱公示</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="shopcenter last nobg"><a href="/supplierPool/registPage">商家注册</a></li>
+                </ul>
+                <input type="hidden" id="isLogin" value="1">
+            </div>
+        </div>
+        <!--头部 导航	结束-->
+        <!--头部 logo&搜索	开始-->
+        <div class="header_search wrap1190 clearfix">
+            <h1 class="yunlogo detail list ">华住易购</h1>
+            <div class="search_box">
+                <ul class="search_tab clearfix">
+                    <li class="on"><a href="javascript:void(0);">商品</a><i class="bright"></i></li>
+                    <li class="last"><a href="javascript:void(0);">供应商</a></li>
+                </ul>
+                <span class="search clearfix">
+                    <input type="search" class="search_ipt" id="searchKey" onkeyup="getSuggest();" value=""
+                        placeholder="请输入商品名称" maxlength="40" />
+                    <span class="place_h place_s">请输入商品名称</span>
+                    <input type="button" class="submit_btn" id="searchBtn" value="搜索" />
+
+                    <div class="pop-search">
+                        <span class="search-li ellipsis"><a href="">毛巾</a></span>
+                        <span class="search-li ellipsis"><a href="">毛巾架</a></span>
+                        <span class="search-li ellipsis"><a href="">毛巾</a></span>
+                        <span class="search-li ellipsis"><a href="">毛巾架</a></span>
+                    </div>
+                </span>
+            </div>
+        </div>
+        <!--头部 logo&搜索	结束-->
+
+    </div>
+
+</body>
+
+</html>
