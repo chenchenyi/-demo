@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    
+   function getUrl(url)
+   {
+       return new Promise(function(resolve,reject){
+           var xml=new XMLHttpRequest();
+           xml.onreadystatechange=function(){
+                if(this.readyState!=4)
+                return ;
+              else {if(this.status==200)
+               resolve(JSON.parse(this.responseText));
+               else
+               {
+                reject(new Error(this.statusText))
+               }}
+               
+           }
+           xml.open('get',url,true);
+           xml.send();
+       })
+   }
+   getUrl('https://bird.ioliu.cn/v1?url=https://douban.uieee.com/v2/movie/in_theaters?city=广州&start=0&count=10').then(function(content){console.log(content)},function(error){console.log(error)})
+    
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,120 @@
+[
+    {
+        "key":"area1",
+        "count": "400-600",
+        "value":[
+            "/join/hiinn.png"
+        ]
+    },
+    {
+        "key":"area2",
+        "count": "601-800",
+        "value":[
+            "/join/hiinn.png",
+            "/join/yilai.png"
+        ]
+    },
+    {
+        "key":"area2",
+        "count": "400-600",
+        "value":[
+            "/join/hiinn.png",
+            "/join/hanting.png"
+        ]
+    },
+    {
+        "key":"area3",
+        "count": "601-800",
+        "value":[
+            "/join/hanting.png",
+            "/join/hantingyoujia.png",
+            "/join/ibis.png"
+        ]
+    },
+    {
+        "key":"area3",
+        "count": "801-1000",
+        "value":[
+            "/join/hantingyoujia.png",
+            "/join/ibis.png",
+            "/join/startway.png"
+        ]
+    },
+    {
+        "key":"area3",
+        "count": "1001-1200",
+        "value":[
+            "/join/startway.png",
+            "/join/ji.png",
+            "/join/ibisStyles.png"
+        ]
+    },
+    {
+        "key":"area3",
+        "count": "1201-1500",
+        "value":[
+            "/join/ji.png",
+            "/join/ibisStyles.png",
+            "/join/manxin.png"
+        ]
+    },
+    {
+        "key":"area3",
+        "count": "1501-2000",
+        "value":[
+            "/join/blossom.png"
+        ]
+    },
+    {
+        "key":"area4",
+        "count": "1201-1500",
+        "value":[
+            "/join/mercure.png",
+            "/join/ibisStyles.png",
+            "/join/manxin.png"
+        ]
+    },
+    {
+        "key":"area4",
+        "count": "1501-2000",
+        "value":[
+            "/join/mercure.png",
+            "/join/orange.png",
+            "/join/manxin.png"
+        ]
+    },
+    {
+        "key":"area4",
+        "count": "2001-3000",
+        "value":[
+            "/join/orange.png",
+            "/join/crystal.png",
+            "/join/novotel.png"
+        ]
+    },
+    {
+        "key":"area5",
+        "count": "2001-3000",
+        "value":[
+            "/join/crystal.png",
+            "/join/novotel.png",
+            "/join/joya.png"
+        ]
+    },
+    {
+        "key":"area5",
+        "count": "3001-4000",
+        "value":[
+            "/join/novotel.png",
+            "/join/joya.png",
+            "/join/blossom.png"
+        ]
+    },
+    {
+        "key":"area5",
+        "count": "6000",
+        "value":[
+            "/join/grandMercure.png"
+        ]
+    }
+]
