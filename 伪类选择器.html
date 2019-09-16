@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪类</title>
+</head>
+<body>
+    静态伪类 只能用于超链接的样式
+    :link 用于未被访问的链接
+    :visited 用于已访问的链接
+    动态伪类 针对所有标签都适用的样式
+    :hover 用于当用户把鼠标移动到元素上面时的效果；
+    (div:hover .class{ color:red; })//可以这样用的呀！
+    :active 用于用户点击元素那一下的效果（正发生在点的那一下，松开鼠标左键此动作也就完成了）
+    :focus 用于元素成为焦点，经常用在表单上
+
+    注意在使用伪类选择器时，要让他们遵循一个爱恨原则：LoVe,HAte,
+    也就是Link--visited--hover--active不然会有意想不到的错误。
+</body>
+</html>
